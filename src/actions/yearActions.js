@@ -27,7 +27,7 @@ export const listYears = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/years/`, config);
+    const { data } = await axios.get(`https://nwd22-webapp.herokuapp.com/api/years/`, config);
 
     dispatch({
       type: YEARS_LIST_SUCCESS,
@@ -89,7 +89,7 @@ export const createYearAction = (
     };
 
     const { data } = await axios.post(
-      `/api/years/year/create`,
+      `https://nwd22-webapp.herokuapp.com/api/years/year/create`,
       { yourName,
         birthDate,
         myValues_1,
@@ -173,7 +173,7 @@ export const updateYearAction = (
     };
 
     const { data } = await axios.put(
-      `/api/years/year/${id}`,
+      `https://nwd22-webapp.herokuapp.com/api/years/year/${id}`,
       {
         yourName,
         birthDate,
