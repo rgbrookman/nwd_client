@@ -1,0 +1,28 @@
+.feelingScoreDiv,
+.tasksCompletedDiv,
+.tasksAttemptedDiv,
+.tasksCompletionRateDiv
+{
+  display: none;
+}
+
+.feelingScoreDivPanel,
+.tasksCompletedDivPanel,
+.tasksAttemptedDivPanel,
+.tasksCompletionRateDivPanel
+ {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #EBF4FA;
+  border-radius: 10px;
+}
+
+.feelingScoreDivPanel h3,
+.tasksCompletedDivPanel h3,
+.tasksAttemptedDivPanel h3,
+.tasksCompletionRateDivPanel h3 {
+font-family: 'caveat', cursive;
+  color: #46A46C;
+}
