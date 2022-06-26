@@ -129,7 +129,17 @@ const Header = ({ history }) => {
         Create a New Week
         </Dropdown.Item>
         <hr className="dividingLine" />
-      
+              {weeks && weeks
+          .filter((week, i, weeks) => weeks.indexOf(week) === weeks.length -1 )
+          .map((week) => (
+        <Dropdown.Item
+          key={week._id}
+          id="viewSelector"
+          className="dropdownItem"
+          href={`/week/${week._id}`}>
+          View & Update
+          </Dropdown.Item>
+                ))}
     </Dropdown.Menu>
     </Dropdown>
     </Nav.Item>
