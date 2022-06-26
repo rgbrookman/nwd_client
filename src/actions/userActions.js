@@ -23,7 +23,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-       "/api/users/login",
+       "https://nwd22-webapp.herokuapp.com//api/users/login",
       { email, password },
       config
     );
