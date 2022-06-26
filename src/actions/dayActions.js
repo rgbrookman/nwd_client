@@ -24,7 +24,7 @@ export const listDays = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/days/`, config);
+    const { data } = await axios.get(`https://nwd22-webapp.herokuapp.com/api/days/`, config);
 
     dispatch({
       type: DAYS_LIST_SUCCESS,
@@ -82,7 +82,7 @@ export const createDayAction = (
     };
 
     const { data } = await axios.post(
-      `/api/days/today`,
+      `https://nwd22-webapp.herokuapp.com/api/days/today`,
       {  logDate,
         startScore,
         thankYou,
