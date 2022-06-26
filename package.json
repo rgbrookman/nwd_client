@@ -2,7 +2,7 @@
   "name": "nwdreactapp",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://nwd22-webapp.herokuapp.com/",
+   "proxy": "http://127.0.0.1:3001",
   "dependencies": {
     "@emailjs/browser": "^3.6.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
