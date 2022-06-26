@@ -58,7 +58,7 @@ export const register = (name, email, password ) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users",
+      "https://nwd22-webapp.herokuapp.com/api/users",
       { name, email, password },
       config
     );
