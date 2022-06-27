@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer, userRegisterReducer, userUpdateReducer } from './reducers/userReducers';
-import { dayCreateReducer, dayListReducer } from './reducers/daysReducers';
+import { dayCreateReducer, dayListReducer, dayUpdateReducer } from './reducers/daysReducers';
 import { yearCreateReducer, yearUpdateReducer, yearListReducer } from './reducers/yearsReducers';
 import { weeksCreateReducer, weekListReducer, weekUpdateReducer } from './reducers/weekReducers';
 
@@ -13,6 +13,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   dayList: dayListReducer,
   dayCreate: dayCreateReducer,
+  dayUpdate: dayUpdateReducer,
   yearCreate: yearCreateReducer,
   yearUpdate: yearUpdateReducer,
   weekCreate: weeksCreateReducer,
