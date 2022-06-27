@@ -11,27 +11,27 @@ import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import axios from "axios";
 import './day.css';
 
-export default function DayScreen({ history }) {
+export default function ViewDayScreen({ history }) {
 
 // Form State
-const [startScore, setStartScore] = useState(0);
+const [startScore, setStartScore] = useState();
 const [logDate, setLogDate] = useState();
-const [thankYou, setThankYou] = useState("");
-const [selfLess, setSelfLess] = useState("");
-const [mindBody, setMindBody] = useState("");
-const [momentOne, setMomentOne] = useState("");
+const [thankYou, setThankYou] = useState();
+const [selfLess, setSelfLess] = useState();
+const [mindBody, setMindBody] = useState();
+const [momentOne, setMomentOne] = useState();
 const [momentOneScore, setMomentOneScore] = useState();
-const [momentTwo, setMomentTwo] = useState("");
-const [momentTwoScore, setMomentTwoScore] = useState("");
-const [momentThree, setMomentThree] = useState("");
-const [momentThreeScore, setMomentThreeScore] = useState("");
-const [momentFour, setMomentFour] = useState("");
+const [momentTwo, setMomentTwo] = useState();
+const [momentTwoScore, setMomentTwoScore] = useState();
+const [momentThree, setMomentThree] = useState();
+const [momentThreeScore, setMomentThreeScore] = useState();
+const [momentFour, setMomentFour] = useState();
 const [momentFourScore, setMomentFourScore] = useState();
-const [momentFive, setMomentFive] = useState("");
+const [momentFive, setMomentFive] = useState();
 const [momentFiveScore, setMomentFiveScore] = useState();
-const [rememberToday, setRememberToday] = useState("");
-const [leaveBehind, setLeaveBehind] = useState("");
-const [endScore, setEndScore] = useState(0);
+const [rememberToday, setRememberToday] = useState();
+const [leaveBehind, setLeaveBehind] = useState();
+const [endScore, setEndScore] = useState();
 
 // Layout & Animation State
 const [isDisplay, setIsDisplay] = useState(true);
