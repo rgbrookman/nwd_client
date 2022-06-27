@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 import { listYears } from '../../actions/yearActions';
 import { listWeeks } from '../../actions/weekActions';
+import { listDays } from '../../actions/dayActions';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { DropdownButton, Dropdown, Nav, Navbar, Container  } from 'react-bootstrap';
 import logo from '../../NWD_Logo_White.png';
@@ -24,12 +25,19 @@ const Header = ({ history }) => {
     const weekList = useSelector((state) => state.weekList);
     const { weeks } = weekList;
 
+    const dayList = useSelector((state) => state.dayList);
+    const { days } = dayList;
+
     useEffect(() => {
   dispatch(listYears());
     }, [dispatch, userInfo, history])
 
     useEffect(() => {
       dispatch(listWeeks());
+    }, [dispatch, userInfo, history]);
+
+    useEffect(() => {
+      dispatch(listDays());
     }, [dispatch, userInfo, history]);
 
     const logoutHandler = () => {
@@ -129,17 +137,17 @@ const Header = ({ history }) => {
         Create a New Week
         </Dropdown.Item>
         <hr className="dividingLine" />
-              {weeks && weeks
-          .filter((week, i, weeks) => weeks.indexOf(week) === weeks.length -1 )
-          .map((week) => (
-        <Dropdown.Item
-          key={week._id}
-          id="viewSelector"
-          className="dropdownItem"
-          href={`/week/${week._id}`}>
-          View & Update
-          </Dropdown.Item>
-                ))}
+        {weeks && weeks
+              .filter((week, i, weeks) => weeks.indexOf(week) === weeks.length -1 )
+              .map((week) => (
+            <Dropdown.Item
+              key={week._id}
+              id="viewSelector"
+              className="dropdownItem"
+              href={`/week/${week._id}`}>
+              View & Update
+              </Dropdown.Item>
+                    ))}
     </Dropdown.Menu>
     </Dropdown>
     </Nav.Item>
@@ -153,10 +161,32 @@ const Header = ({ history }) => {
 
             <Dropdown.Toggle
               id="yearDropdownToggle"
-              className="dropdownToggle"
-              href="/today">
+              className="dropdownToggle">
               Today
             </Dropdown.Toggle>
+            <Dropdown.Menu
+            id="weekDropdownMenu"
+            className="dropdowMenu">
+
+            <Dropdown.Item
+              id="createSelector"
+              className="dropdownItem"
+              href="/today">
+            Create your Day
+            </Dropdown.Item>
+            <hr className="dividingLine" />
+            {days && days
+                  .filter((day, i, days) => days.indexOf(day) === days.length -1 )
+                  .map((day) => (
+                <Dropdown.Item
+                  key={day._id}
+                  id="viewSelector"
+                  className="dropdownItem"
+                  href={`/today/${day._id}`}>
+                  Update Day
+                  </Dropdown.Item>
+                        ))}
+        </Dropdown.Menu>
             </Dropdown>
  </Nav.Item>
 
