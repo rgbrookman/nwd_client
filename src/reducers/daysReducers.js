@@ -5,6 +5,10 @@ import {
   DAYS_LIST_FAIL,
   DAYS_LIST_REQUEST,
   DAYS_LIST_SUCCESS,
+  DAYS_UPDATE_FAIL,
+  DAYS_UPDATE_REQUEST,
+  DAYS_UPDATE_SUCCESS,
+
 } from "../constants/daysConstants";
 
 export const dayCreateReducer = (state = {}, action) => {
@@ -28,6 +32,20 @@ export const dayListReducer = (state = { days: [] }, action) => {
     case DAYS_LIST_SUCCESS:
       return { loading: false, days: action.payload };
     case DAYS_LIST_FAIL:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const dayUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DAYS_UPDATE_REQUEST:
+      return { loading: true };
+    case DAYS_UPDATE_SUCCESS:
+      return { loading: false, success: true };
+    case DAYS_UPDATE_FAIL:
       return { loading: false, error: action.payload };
 
     default:
