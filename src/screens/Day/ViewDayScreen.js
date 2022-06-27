@@ -106,7 +106,7 @@ useEffect(() => {
 
   const fetching = async () => {
     try {
-      const { data } = await axios.get(`/api/days/${id}`);
+      const { data } = await axios.get(`/api/days/today/${id}`);
       setLogDate(data.logDate);
       setStartScore(data.startScore);
       setThankYou(data.thankYou);
