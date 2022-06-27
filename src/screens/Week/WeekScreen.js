@@ -14,26 +14,26 @@ import { faPenToSquare, faEraser, faCircleCheck } from '@fortawesome/free-solid-
 export default function WeekScreen({ history }) {
 
   // Form State
-  const [objectiveOne_text, setObjectiveOne_text] = useState("");
-  const [objectiveOne_score, setObjectiveOne_score] = useState(0);
-  const [objectiveTwo_text, setObjectiveTwo_text] = useState("");
-  const [objectiveTwo_score, setObjectiveTwo_score] = useState(0);
-  const [objectiveThree_text, setObjectiveThree_text] = useState("");
-  const [objectiveThree_score, setObjectiveThree_score] = useState(0);
-  const [objectiveFour_text, setObjectiveFour_text] = useState("");
-  const [objectiveFour_score, setObjectiveFour_score] = useState(0);
-  const [objectiveFive_text, setObjectiveFive_text] = useState("");
-  const [objectiveFive_score, setObjectiveFive_score] = useState(0);
-  const [objectiveSix_text, setObjectiveSix_text] = useState("");
-  const [objectiveSix_score, setObjectiveSix_score] = useState(0);
-  const [objectiveSeven_text, setObjectiveSeven_text] = useState("");
-  const [objectiveSeven_score, setObjectiveSeven_score] = useState(0);
-  const [objectiveEight_text, setObjectiveEight_text] = useState("");
-  const [objectiveEight_score, setObjectiveEight_score] = useState(0);
-  const [objectiveNine_text, setObjectiveNine_text] = useState("");
-  const [objectiveNine_score, setObjectiveNine_score] = useState(0);
-  const [objectiveTen_text, setObjectiveTen_text] = useState("");
-  const [objectiveTen_score, setObjectiveTen_score] = useState(0);
+  const [objectiveOne_text, setObjectiveOne_text] = useState();
+  const [objectiveOne_score, setObjectiveOne_score] = useState();
+  const [objectiveTwo_text, setObjectiveTwo_text] = useState();
+  const [objectiveTwo_score, setObjectiveTwo_score] = useState();
+  const [objectiveThree_text, setObjectiveThree_text] = useState();
+  const [objectiveThree_score, setObjectiveThree_score] = useState();
+  const [objectiveFour_text, setObjectiveFour_text] = useState();
+  const [objectiveFour_score, setObjectiveFour_score] = useState();
+  const [objectiveFive_text, setObjectiveFive_text] = useState();
+  const [objectiveFive_score, setObjectiveFive_score] = useState();
+  const [objectiveSix_text, setObjectiveSix_text] = useState();
+  const [objectiveSix_score, setObjectiveSix_score] = useState();
+  const [objectiveSeven_text, setObjectiveSeven_text] = useState();
+  const [objectiveSeven_score, setObjectiveSeven_score] = useState();
+  const [objectiveEight_text, setObjectiveEight_text] = useState();
+  const [objectiveEight_score, setObjectiveEight_score] = useState();
+  const [objectiveNine_text, setObjectiveNine_text] = useState();
+  const [objectiveNine_score, setObjectiveNine_score] = useState();
+  const [objectiveTen_text, setObjectiveTen_text] = useState();
+  const [objectiveTen_score, setObjectiveTen_score] = useState();
 
 // Hide/Display State
 const [isInput1, setIsInput1] = useState(true);
@@ -100,7 +100,7 @@ const [isEditIcon10, setEditIcon10] = useState(true);
 
     const fetching = async () => {
       try {
-        const { data } = await axios.get(`/api/weeks/week/${id}`);
+        const { data } = await axios.get(`https://nwd22-webapp.herokuapp.com/api/weeks/week/${id}`);
           setObjectiveOne_text(data.objectiveOne_text);
           setObjectiveOne_score(data.objectiveOne_score);
           setObjectiveTwo_text(data.objectiveTwo_text);
@@ -197,7 +197,9 @@ const [isEditIcon10, setEditIcon10] = useState(true);
           !objectiveTen_text ||
           !objectiveTen_score) return;
       resetHandler();
-      navigate('/today');
+      setTimeout(()=> {
+        window.location.reload();
+      }, 250);
   };
 
   const showHideState = {
