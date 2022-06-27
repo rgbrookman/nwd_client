@@ -72,7 +72,7 @@ const userLogin = useSelector((state) => state.userLogin);
 const { userInfo } = userLogin;
 
 const dayList = useSelector((state) => state.dayList); //
-const { loading, error, days } = dayList;
+const { days } = dayList;
 
 const dayUpdate = useSelector((state) => state.dayUpdate);
 const { success: successUpdate } = dayUpdate;
@@ -106,7 +106,7 @@ useEffect(() => {
 
   const fetching = async () => {
     try {
-      const { data } = await axios.get(`/api/days/today/${id}`);
+      const { data } = await axios.get(`/api/days/${id}`);
       setLogDate(data.logDate);
       setStartScore(data.startScore);
       setThankYou(data.thankYou);
