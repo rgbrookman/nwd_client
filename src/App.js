@@ -10,6 +10,7 @@ import UpdateYearScreen from './screens/Year/UpdateYearScreen';
 
 // Day
 import DayScreen from './screens/Day/DayScreen';
+import ViewDayScreen from './screens/Day/ViewDayScreen';
 
 // Week
 import WeekScreen from './screens/Week/WeekScreen';
@@ -71,6 +72,7 @@ function App() {
           <Route path="/year/create" element={<YearScreen />} />
           <Route path="/year/:id" element={<ViewYearScreen />} />
           <Route path="/today" element={<DayScreen />} />
+          <Route path="/today/:id" element={<ViewDayScreen />} />
           <Route path="/diary" element={<DiaryScreen />} />
         </Routes>
       </Router>
