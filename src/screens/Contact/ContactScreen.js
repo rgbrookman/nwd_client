@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Button, Row, Col  } from 'react-bootstrap';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2'
 import './contact.css';
 
@@ -34,6 +35,9 @@ export default function Contact({ history }) {
 
   return (
     <Container className="contactContainer">
+    <Helmet>
+       <title>Contact Us</title>
+     </Helmet>
       <form id="contactForm" className="contact-form" ref={form} onSubmit={sendEmail}>
     <Row>
     <Col className="formColumn col-6">

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { listYears } from '../../actions/yearActions';
 import { listWeeks } from '../../actions/weekActions';
 import { listDays } from '../../actions/dayActions';
+import Loading from '../../components/Loading';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { DropdownButton, Dropdown, Nav, Navbar, Container  } from 'react-bootstrap';
 import logo from '../../NWD_Logo_White.png';
@@ -20,13 +21,13 @@ const Header = ({ history }) => {
     const { userInfo } = userLogin;
 
     const yearList = useSelector((state) => state.yearList);
-    const { loading, error, years } = yearList;
+    const { years } = yearList;
 
     const weekList = useSelector((state) => state.weekList);
     const { weeks } = weekList;
 
     const dayList = useSelector((state) => state.dayList);
-    const { days } = dayList;
+    const { loading, error,  days } = dayList;
 
     useEffect(() => {
   dispatch(listYears());
@@ -64,8 +65,11 @@ const Header = ({ history }) => {
   return (
 
  <Navbar className="navbarHeader navbar-dark align-items-center" expand="md">
+{ !days && !years && !weeks ? <Loading /> : null}
 
-    <Navbar.Brand
+{ !days && !years && !weeks ? <Navbar.Brand
+  href="/">
+  </Navbar.Brand> :   <Navbar.Brand
     href="/">
     <img
       src={logo}
@@ -74,15 +78,20 @@ const Header = ({ history }) => {
       className="d-inline-block align-top"
       alt="NWD Logo"
     />
-    </Navbar.Brand>
+    </Navbar.Brand> }
+
 
     <Navbar.Toggle id="toggle" aria-controls="basic-navbar-nav" variant="light" />
        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
        <Nav className="justify-content-flex-end">
 
+       <Nav.Item className="navSection">
+  <Nav.Link to="/feedback"> Feedback</Nav.Link>
+         </Nav.Item>
 
     { userInfo
-    ? <Nav.Item className="navSection">
+    ?
+    <Nav.Item className="navSection">
         <Dropdown
         className='navSection headerDropdown'>
 
@@ -164,6 +173,7 @@ const Header = ({ history }) => {
               className="dropdownToggle">
               Today
             </Dropdown.Toggle>
+            { !days ? null :
             <Dropdown.Menu
             id="weekDropdownMenu"
             className="dropdowMenu">
@@ -175,6 +185,7 @@ const Header = ({ history }) => {
             Create your Day
             </Dropdown.Item>
             <hr className="dividingLine" />
+
             {days && days
                   .filter((day, i, days) => days.indexOf(day) === days.length -1 )
                   .map((day) => (
@@ -186,7 +197,9 @@ const Header = ({ history }) => {
                   Update Day
                   </Dropdown.Item>
                         ))}
+
         </Dropdown.Menu>
+        }
             </Dropdown>
  </Nav.Item>
 

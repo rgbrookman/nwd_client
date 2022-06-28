@@ -10,6 +10,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import axios from "axios";
 import * as d3 from "d3";
+import { Helmet } from 'react-helmet';
 import './insight.css'
 
 export default function InsightScreen({ history }) {
@@ -47,6 +48,9 @@ export default function InsightScreen({ history }) {
   return (
 
     <Container className="mainContainer mt-5">
+    <Helmet>
+       <title>Your Insights</title>
+     </Helmet>
       <Row className="mb-4">
         <Col>
         <motion.div

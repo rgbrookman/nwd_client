@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { updateProfile } from '../../actions/dayActions';
 import { Card, Button, Row, Col, Container, Form } from 'react-bootstrap';
 import Loading from '../../components/Loading';
@@ -15,6 +16,9 @@ export default function ValuesScreen() {
 
   return (
 <main>
+<Helmet>
+   <title>Your Values</title>
+ </Helmet>
 <Intro />
 </main>
   );

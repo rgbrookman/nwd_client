@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import axios from "axios";
+import { Helmet } from 'react-helmet';
 import './day.css';
 
 export default function ViewDayScreen({ history }) {
@@ -46,6 +47,8 @@ const [isDisplay8, setIsDisplay8] = useState(true);
 const [isDisplay9, setIsDisplay9] = useState(true);
 const [isDisplay10, setIsDisplay10] = useState(true);
 
+const [loadingAnimation, setLoadingAnimation] = useState(false);
+
 const showHideState = {
   hide: {
     display: "none",
@@ -72,7 +75,7 @@ const userLogin = useSelector((state) => state.userLogin);
 const { userInfo } = userLogin;
 
 const dayList = useSelector((state) => state.dayList); //
-const { days } = dayList;
+const { loading, error, days } = dayList;
 
 const dayUpdate = useSelector((state) => state.dayUpdate);
 const { success: successUpdate } = dayUpdate;
@@ -133,9 +136,9 @@ useEffect(() => {
 }, [id]);
 
 
-const updateHandler = (e) => {
-  e.preventDefault();
-  dispatch(updateDayAction(id,
+const updateHandler = async (e) => {
+await e.preventDefault();
+await dispatch(updateDayAction(id,
     logDate,
       startScore,
       thankYou,
@@ -173,14 +176,20 @@ const updateHandler = (e) => {
         !rememberToday||
         !leaveBehind ||
         !endScore) return;
-    resetHandler();
-    setTimeout(()=> {
-      window.location.reload();
-    }, 250);
+   await resetHandler();
+
+   await setTimeout(() => {
+     setLoadingAnimation(loadingAnimation => true);
+   }, 2000)
+
+   await navigate('/');
 };
 
   return (
-<form onSubmit={updateHandler}>
+    <form onSubmit={updateHandler}>
+    <Helmet>
+       <title>Today | View</title>
+     </Helmet>
 <main className="dayScreenMain">
 <div className="topRow">
 <div className="topRowLeft">
@@ -188,6 +197,7 @@ const updateHandler = (e) => {
 type="date"
 value={logDate}
 onChange={(e) => setLogDate(e.target.value)}
+required
 />
 <div className="resetDiv">
 <FontAwesomeIcon

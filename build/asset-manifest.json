@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.0f632dc6.css",
-    "main.js": "/static/js/main.5a223150.js",
+    "main.js": "/static/js/main.beb93ea5.js",
     "static/media/NWD_Logo_White.png": "/static/media/NWD_Logo_White.763188342d681fc02551.png",
     "index.html": "/index.html",
     "main.0f632dc6.css.map": "/static/css/main.0f632dc6.css.map",
-    "main.5a223150.js.map": "/static/js/main.5a223150.js.map"
+    "main.beb93ea5.js.map": "/static/js/main.beb93ea5.js.map"
   },
   "entrypoints": [
     "static/css/main.0f632dc6.css",
-    "static/js/main.5a223150.js"
+    "static/js/main.beb93ea5.js"
   ]
 }

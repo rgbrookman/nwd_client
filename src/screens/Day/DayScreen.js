@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { createDayAction } from '../../actions/dayActions';
 import { Card, Button } from 'react-bootstrap';
 import Loading from '../../components/Loading';
+import { Helmet } from 'react-helmet';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -152,6 +153,9 @@ const resetHandler = () => {
 
   return (
 <form onSubmit={submitHandler}>
+<Helmet>
+   <title>Today | Create</title>
+ </Helmet>
 <main className="dayScreenMain">
 <div className="topRow">
 <div className="topRowLeft">
