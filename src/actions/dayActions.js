@@ -164,7 +164,7 @@ export const updateDayAction = (
     };
 
     const { data } = await axios.put(
-      `https://nwd22-webapp.herokuapp.com/api/days/${id}`,
+      `https://nwd22-webapp.herokuapp.com/api/days/today/${id}`,
       { logDate,
         startScore,
         thankYou,
