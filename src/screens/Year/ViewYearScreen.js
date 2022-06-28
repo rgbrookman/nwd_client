@@ -206,7 +206,9 @@ let daysCalc = diff / (1000 * 3600 * 24)
 let days1 = Math.floor(daysCalc);
 
   return (
+
     <form onSubmit={updateHandler}>
+       { loading && <Loading />}
     <main id="yearContainer">
     <div className="yearTopRow">
 

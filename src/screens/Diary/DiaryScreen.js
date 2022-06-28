@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { createDayAction, listDays } from '../../actions/dayActions';
 import { Card, Button } from 'react-bootstrap';
 import Loading from '../../components/Loading';
+import { Helmet } from 'react-helmet';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -80,6 +81,9 @@ useEffect(() => {
 
   return (
 <main className="dayScreenMain">
+<Helmet>
+   <title>Diary</title>
+ </Helmet>
 <div className="topRow">
 
 <input

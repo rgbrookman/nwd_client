@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { createYearAction, listYears } from '../../actions/yearActions';
 import Loading from '../../components/Loading';
+import { Helmet } from 'react-helmet';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import './createyear.css';
@@ -68,6 +69,9 @@ export default function YearScreen({ history }) {
 
   return (
 <form onSubmit={submitHandler}>
+<Helmet>
+   <title>Year | Create</title>
+ </Helmet>
 
     <main id="yearContainer">
     <div className="yearTopRow">

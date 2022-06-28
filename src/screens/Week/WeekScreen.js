@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createWeekAction, listWeeks, updateWeekAction } from '../../actions/weekActions';
 import Loading from '../../components/Loading';
 import { ErrorMessage } from '../../components/ErrorMessage';
+import { Helmet } from 'react-helmet';
 import './week.css';
 import axios from "axios";
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
@@ -75,7 +76,6 @@ const [isEditIcon9, setEditIcon9] = useState(true);
 const [isInput10, setIsInput10] = useState(true);
 const [isCircleCheck10, setCircleCheck10] = useState(false);
 const [isEditIcon10, setEditIcon10] = useState(true);
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -214,6 +214,9 @@ const [isEditIcon10, setEditIcon10] = useState(true);
   return (
 
 <Container className="weekScreenMain" fluid>
+<Helmet>
+   <title>Week | View</title>
+ </Helmet>
   <Form onSubmit={updateHandler}>
 
   <Row id="buttonRow">

@@ -6,6 +6,7 @@ import { Card, Button, Row, Col, Container, Form } from 'react-bootstrap';
 import Loading from '../../components/Loading';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import Footer from '../../components/Footer';
+import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser } from '@fortawesome/free-solid-svg-icons'
 import './profile.css';
@@ -54,6 +55,9 @@ confirmPassword
 
   return (
 <Container fluid className="mainProfileScreen" >
+<Helmet>
+   <title>Edit Profile</title>
+ </Helmet>
 <Row>
 <Col sm={12} md={12} lg={8}>
 <form className="updateProfileForm" onSubmit={submitHandler} >

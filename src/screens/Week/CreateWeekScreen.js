@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createWeekAction, listWeeks, updateWeekAction } from '../../actions/weekActions';
 import Loading from '../../components/Loading';
+import { Helmet } from 'react-helmet';
 import { ErrorMessage } from '../../components/ErrorMessage';
 import './week.css';
 import axios from "axios";
@@ -71,6 +72,9 @@ export default function WeekScreen({ history }) {
   return (
 
 <Container className="weekScreenMain">
+<Helmet>
+   <title>Week | Create</title>
+ </Helmet>
   <Form onSubmit={submitHandler}>
   <Row id="buttonRow" >
       <Button className="submitWeekButton" type="submit">
