@@ -1,4 +1,13 @@
 /* Year Screen */
+
+.pageLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
 .yearTopRow {
   display: flex;
   flex-direction: row;
@@ -16,6 +25,23 @@
   margin-left: 24px;
   margin-right: 24px;
   margin-bottom: 24px;
+}
+
+.videoExit {
+  width: auto;
+  padding: 4px;
+  margin: 6px;
+  border-radius: 10px;
+}
+
+.videoExit:hover {
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+  width: auto;
+  padding: 4px;
+  margin: 6px;
+  border-radius: 10px;
 }
 
 .nameBox {
@@ -296,8 +322,49 @@
 .submitYearButton {
   background-color: #EBF4FA;
   color: #46A46C;
+  font-family: 'Koulen', cursive;
   border: 1px solid #46A46C;
+  width: auto;
+  margin-left: 24px;
   margin-right: 24px;
+  margin-bottom: 12px;
+}
+
+.explainerButton {
+  background-color: #46A46C;
+  color: #EBF4FA;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #EBF4FA;
+  box-shadow: none;
+  width: auto;
+}
+
+.explainerButton:hover {
+  background-color: #EBF4FA;
+  color: #46A46C;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #46A46C;
+  border-color: #46A46C;
+  box-shadow: none;
+  width: auto;
+}
+
+.videoContainer {
+  height: 500px;
+  width: 75%;
+  background-color: #EBF4FA;
+  top: 20%;
+  left: 12.5%;
+  position: fixed;
+  border: 5px solid #46A46C;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px lightgrey;
+}
+
+.videoContainerDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #helpButton {
@@ -311,15 +378,15 @@
 }
 
 .helpItem {
-    background-color: #EBF4FA;
+  background-color: #EBF4FA;
   min-width: 100%;
   display: inline-flex;
   flex-direction: row;
-    color: #46A46C;
+  color: #46A46C;
 }
 
 .helpLink {
-    background-color: #EBF4FA;
+  background-color: #EBF4FA;
   text-decoration: none;
   color: #46A46C;
 }

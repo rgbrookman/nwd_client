@@ -31,6 +31,16 @@ span, p, li {
   font-weight: 400;
 }
 
+label {
+  font-family: arial, sans-serif;
+  font-weight: 200;
+  font-size: 0.8em;
+  line-height: 0.8;
+  margin: 0 0 0 12px;
+  text-align: start;
+  color: lightgreen;
+}
+
 /* App.js */
 Link {
   text-decoration: none;
@@ -46,18 +56,4 @@ Link {
 DropdownButton {
   display: flex;
   flex-direction: column;
-}
-
-/* Landing Page */
-.LandingPage  {
-  height: 65vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.landingScreenHeader {
-  font-size: 128px;
 }

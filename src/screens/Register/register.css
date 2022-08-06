@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 65vh;
 }
 
 #registerScreen span {
@@ -11,6 +12,10 @@
   color: #EBF4FA;
 }
 
+.registerHeader {
+  font-family: 'caveat', cursive;
+  color: #46A46C;
+}
 .registerContainer {
   margin-top: 100px;
   width: auto;

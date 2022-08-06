@@ -4,14 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { listYears } from '../../actions/yearActions';
 import { listWeeks } from '../../actions/weekActions';
 import { listDays } from '../../actions/dayActions';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import PageLoading from '../../components/Loading/PageLoading';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { DropdownButton, Dropdown, Nav, Navbar, Container  } from 'react-bootstrap';
 import logo from '../../NWD_Logo_White.png';
 import { logout } from '../../actions/userActions';
+import * as d3 from 'd3';
 import './header.css';
 
 const Header = ({ history }) => {
+  const [homepage, setHomepage] = useState(window.location.href === '/' ? true : false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let { id } = useParams();
@@ -60,17 +63,39 @@ const Header = ({ history }) => {
         margin: 0,
     };
 
+        const [pageLoading, setPageLoading] = useState(true);
 
+        const loadingTimeout = () => {
+          setTimeout(()=> {
+            setPageLoading(false)
+          }, 3000)
+        }
+
+        useEffect(()=> {
+          loadingTimeout();
+        })
+
+        const daysLoggedArray = [];
+          days && days.map(each => daysLoggedArray.push(each.startScore));
+
+        const daysLogged = d3.count(daysLoggedArray, d => d);
+
+        const yearsArray = [];
+
+        years && years.map(each => yearsArray.push(each.yourName));
+
+        const yearsLogged = d3.count(yearsArray, d => d);
 
   return (
-
+<>
  <Navbar className="navbarHeader navbar-dark align-items-center" expand="md">
-{ !days && !years && !weeks ? <Loading /> : null}
+{
+  !days && !years && !weeks
+  ?
 
-{ !days && !years && !weeks ? <Navbar.Brand
-  href="/">
-  </Navbar.Brand> :   <Navbar.Brand
-    href="/">
+  <Loading /> :
+
+  <Navbar.Brand>
     <img
       src={logo}
       width="30"
@@ -78,44 +103,56 @@ const Header = ({ history }) => {
       className="d-inline-block align-top"
       alt="NWD Logo"
     />
-    </Navbar.Brand> }
+    </Navbar.Brand>
 
+}
+
+{!days ? null : days
+      .filter((day, i, days) => days.indexOf(day) === days.length -1 )
+      .map((day) => (
+<span className="lastDayNudge d-none d-sm-block" key={day._id}>Last Day Logged: <br /> <strong>{day.logDate.toLocaleString().substring(0,10)}</strong></span>
+            ))}
 
     <Navbar.Toggle id="toggle" aria-controls="basic-navbar-nav" variant="light" />
        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
        <Nav className="justify-content-flex-end">
 
-       <Nav.Item className="navSection">
-  <Nav.Link to="/feedback"> Feedback</Nav.Link>
-         </Nav.Item>
+{ userInfo ?
+  <Nav.Item className="navSection">
+    <Nav.Link href="/feedback">Feedback</Nav.Link>
+  </Nav.Item> : null
+}
+
 
     { userInfo
     ?
     <Nav.Item className="navSection">
-        <Dropdown
-        className='navSection headerDropdown'>
-
+        <Dropdown className='navSection headerDropdown'>
           <Dropdown.Toggle
             id="yearDropdownToggle"
             className="dropdownToggle">
             Year
           </Dropdown.Toggle>
-
         <Dropdown.Menu
-            id="yearDropdownMenu"
-            className="dropdownMenu">
+          id="yearDropdownMenu"
+          className="dropdownMenu">
 
-        <Dropdown.Item
-          id="createSelector"
-          href={`/year/create`}>
-        Create A New Year
-          </Dropdown.Item>
+{ years && years.yourName === null ?
+null :
+<Dropdown.Item
+  id="createSelector"
+  className="listItem"
+  href={`/year/create`}>
+Create A New Year
           <hr className="dividingLine" />
+  </Dropdown.Item>
+}
 
       {years && years.map((year) =>
     <Dropdown.Item
-      id="viewSelector"
       key={year._id}
+      id="viewSelector"
+      className="listItem"
       href={`/year/${year._id}`}>
       View & Update
       </Dropdown.Item>
@@ -129,7 +166,7 @@ const Header = ({ history }) => {
     ? <Nav.Item className="navSection">
 
       <Dropdown
-        className='headerDropdown'>
+        className='navSection headerDropdown'>
         <Dropdown.Toggle
         id="weekDropdownToggle"
         className="dropDownToggle">
@@ -141,18 +178,19 @@ const Header = ({ history }) => {
 
         <Dropdown.Item
           id="createSelector"
-          className="dropdownItem"
+          className="listItem"
           href="/week/create">
         Create a New Week
-        </Dropdown.Item>
         <hr className="dividingLine" />
+        </Dropdown.Item>
+
         {weeks && weeks
               .filter((week, i, weeks) => weeks.indexOf(week) === weeks.length -1 )
               .map((week) => (
             <Dropdown.Item
               key={week._id}
               id="viewSelector"
-              className="dropdownItem"
+              className="listItem"
               href={`/week/${week._id}`}>
               View & Update
               </Dropdown.Item>
@@ -183,8 +221,9 @@ const Header = ({ history }) => {
               className="dropdownItem"
               href="/today">
             Create your Day
-            </Dropdown.Item>
             <hr className="dividingLine" />
+            </Dropdown.Item>
+
 
             {days && days
                   .filter((day, i, days) => days.indexOf(day) === days.length -1 )
@@ -204,12 +243,18 @@ const Header = ({ history }) => {
  </Nav.Item>
 
 
-      : <Nav.Item className="navSection">
+      : <><Nav.Item className="navSection">
            <Nav.Link
            className="navItem"
            href="/login"
-           >Login / Register</Nav.Link>
+           >Login</Nav.Link>
            </Nav.Item>
+           <Nav.Item className="navSection">
+                <Nav.Link
+                className="navItem"
+                href="/register"
+                >Register</Nav.Link>
+                </Nav.Item></>
          }
 
          { userInfo
@@ -219,10 +264,38 @@ const Header = ({ history }) => {
 
                <Dropdown.Toggle
                  id="yearDropdownToggle"
-                 className="dropdownToggle"
-                 href="/insight">
+                 className="dropdownToggle">
                  Insight
                </Dropdown.Toggle>
+               <Dropdown.Menu
+               id="weekDropdownMenu"
+               className="dropdowMenu">
+
+{ daysLogged > 9 ? <Dropdown.Item
+       id="insightSelector"
+       className="dropdownItem inactive"
+       href="/insight">
+     View Insights
+
+     </Dropdown.Item> : <Dropdown.Item
+            id="insightSelector"
+            className="dropdownItem inactive"
+          >
+          <s>View Insights</s>
+
+          </Dropdown.Item>}
+
+               <hr className="dividingLine" />
+
+                   <Dropdown.Item
+                     id="viewSelector"
+                     className="dropdownItem"
+                     href="/insight/quiz">
+                    The Art of Looking
+                     </Dropdown.Item>
+
+
+           </Dropdown.Menu>
                </Dropdown>
     </Nav.Item>
          : null
@@ -263,9 +336,9 @@ const Header = ({ history }) => {
      : null }
 </Nav>
 </Navbar.Collapse>
-
   </Navbar>
 
+</>
   )
 }
 

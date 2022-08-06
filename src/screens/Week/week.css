@@ -74,6 +74,7 @@ justify-content: space-between;
 .objectiveLabel {
   font-family: 'Courier New', monospace;
   font-size: 0.8em;
+  color: #46A46C;
 }
 
 .weekObjectiveText {
@@ -114,4 +115,35 @@ justify-content: space-between;
   height: 25px;
   background: #46A46C;
   cursor: pointer;
+}
+
+.videoContainer {
+  height: 500px;
+  width: 75%;
+  background-color: #EBF4FA;
+  display: flex;
+  top: 20%;
+  left: 12.5%;
+  position: fixed;
+  border: 1px solid #46A46C;
+  border-radius: 10px;
+}
+
+.explainerButton {
+  background-color: #46A46C;
+  color: #EBF4FA;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #EBF4FA;
+  box-shadow: none;
+  width: auto;
+}
+
+.explainerButton:hover {
+  background-color: #EBF4FA;
+  color: #46A46C;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #46A46C;
+  border-color: #46A46C;
+  box-shadow: none;
+  width: auto;
 }

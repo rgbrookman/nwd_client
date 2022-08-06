@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2'
 import './contact.css';
+import Header from "../../components/Header/Header";
 
 export default function Contact({ history }) {
   const [name, setName] = useState('');
@@ -34,7 +35,8 @@ export default function Contact({ history }) {
 
 
   return (
-    <Container className="contactContainer">
+    <Container className="contactContainer" fluid>
+    <Header />
     <Helmet>
        <title>Contact Us</title>
      </Helmet>
@@ -44,7 +46,7 @@ export default function Contact({ history }) {
     <Row>
     <Col>
     <div className="senderContainer">
-    <label for="contactName">Name</label>
+    <label className="contactLabel"for="contactName">Name</label>
     <input
       id="contactName"
       type="text"
@@ -112,12 +114,8 @@ export default function Contact({ history }) {
 
       </Col>
       <Col className="explainerCol col-6">
-      <h1>Get in touch!</h1>
-      <motion.span>Share, enquire, report away! Find a few headline answers to common questions below</motion.span>
-      <ul>
-        <li>News/Press Enquiries: </li>
-        <li>Careers/Internships: </li>
-      </ul>
+      <h1 className="quizHeaderWhite">Get in touch!</h1>
+      <span className="contactSpan">Share, enquire, report away! </span>
       </Col>
     </Row>
       </form>

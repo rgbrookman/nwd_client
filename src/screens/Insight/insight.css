@@ -1,28 +1,28 @@
-.feelingScoreDiv,
-.tasksCompletedDiv,
-.tasksAttemptedDiv,
-.tasksCompletionRateDiv
-{
-  display: none;
+/* Insight Screen */
+.insightHeader {
+  font-family: 'caveat', cursive;
+  color: #EBF4FA;
+  opacity: 0.5;
 }
 
-.feelingScoreDivPanel,
-.tasksCompletedDivPanel,
-.tasksAttemptedDivPanel,
-.tasksCompletionRateDivPanel
- {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.chartTitle {
+  font-family: 'caveat', cursive;
+  color: #EBF4FA;
+  margin: 0;
+  padding: 0;
+}
+
+.statSpan {
+  color: #EBF4FA;
+  opacity: 0.5;
+}
+
+.graphLid {
   background-color: #EBF4FA;
-  border-radius: 10px;
+  height: 100%;
+  width: 100%;
 }
 
-.feelingScoreDivPanel h3,
-.tasksCompletedDivPanel h3,
-.tasksAttemptedDivPanel h3,
-.tasksCompletionRateDivPanel h3 {
-font-family: 'caveat', cursive;
-  color: #46A46C;
+#colBorder {
+  border-left: 1px solid rgb(235, 244,250,0.5);
 }

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createWeekAction, listWeeks, updateWeekAction } from '../../actions/weekActions';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import Header from '../../components/Header/Header';
 import { Helmet } from 'react-helmet';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import './week.css';
 import axios from "axios";
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
@@ -30,6 +32,8 @@ export default function WeekScreen({ history }) {
   const [objectiveNine_score, setObjectiveNine_score] = useState(0);
   const [objectiveTen_text, setObjectiveTen_text] = useState("");
   const [objectiveTen_score, setObjectiveTen_score] = useState(0);
+
+  const [videoDisplay, setVideoDisplay] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,15 +72,38 @@ export default function WeekScreen({ history }) {
       navigate('/');
   };
 
+  const valueState = {
+    hide: {
+      display: "none",
+    },
+    show: {
+      display: "block",
+    },
+  };
+
 
   return (
-
+<>
+<Header />
 <Container className="weekScreenMain">
+<motion.div
+animate={videoDisplay ? "hide" : "show"}
+variants={valueState}
+className="videoContainer">
+<h1>Video</h1>
+</motion.div>
 <Helmet>
    <title>Week | Create</title>
  </Helmet>
   <Form onSubmit={submitHandler}>
   <Row id="buttonRow" >
+  <Button className="explainerButton"
+  onClick={()=> {
+    setVideoDisplay(videoDisplay => !videoDisplay);
+  }}>
+  Learn About Your Week Page
+  </Button>
+
       <Button className="submitWeekButton" type="submit">
         Create New Week
       </Button>
@@ -384,5 +411,6 @@ onChange={(e) => setObjectiveTen_score(e.target.value)}
 
     </Form>
 </Container>
+</>
   );
 }

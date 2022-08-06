@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { createYearAction, listYears } from '../../actions/yearActions';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Loading/Loading';
+import PageLoading from '../../components/Loading/PageLoading';
+import Header from '../../components/Header/Header';
 import { Helmet } from 'react-helmet';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
 import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import YouTube from 'react-youtube';
 import './createyear.css';
 
 export default function YearScreen({ history }) {
@@ -29,6 +33,11 @@ export default function YearScreen({ history }) {
   const [whyNWD, setWhyNWD] = useState("");
   const [myIkigai, setMyIkigai] = useState("");
   const [navigationalQuote, setNavigationalQuote] = useState("");
+
+  const [videoDisplay, setVideoDisplay] = useState(false);
+  const [videoLink, setVideoLink] = useState('TpLVtoE6bFg');
+
+  const [pageLoading, setPageLoading] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,13 +75,44 @@ export default function YearScreen({ history }) {
     navigate('/');
   };
 
+  const valueState = {
+    hide: {
+      display: "none",
+    },
+    show: {
+      display: "block",
+    },
+  };
+
+  const loadingTimeout = () => {
+    setTimeout(()=> {
+      setPageLoading(false)
+    }, 3000)
+  }
+
+  useEffect(()=> {
+    loadingTimeout();
+  })
+
 
   return (
+    <>
+    <Header />
+      { pageLoading ? <div className="pageLoading"><PageLoading /></div> :
 <form onSubmit={submitHandler}>
+
 <Helmet>
    <title>Year | Create</title>
  </Helmet>
-
+ <motion.div
+ animate={videoDisplay ? "hide" : "show"}
+ variants={valueState}
+ className="videoContainer">
+ <div className="videoContainerDiv">
+<YouTube video={'aSGvVwsYY3Q'} width="100%" />
+<motion.h1 className="videoExit" onClick={() => setVideoDisplay(videoDisplay => true) }>X</motion.h1>
+</div>
+ </motion.div>
     <main id="yearContainer">
     <div className="yearTopRow">
 
@@ -87,6 +127,12 @@ export default function YearScreen({ history }) {
     <Dropdown.Item className="helpItem" eventKey="3">Ikigai</Dropdown.Item>
 
   </DropdownButton>
+  <Button className="explainerButton"
+  onClick={()=> {
+    setVideoDisplay(videoDisplay => !videoDisplay);
+  }}>
+  Learn About Your Year Page
+  </Button>
   <Button
   className="submitYearButton"
   type="submit"
@@ -279,5 +325,7 @@ export default function YearScreen({ history }) {
     </main>
 
     </form>
+    }
+  </>
   );
 }

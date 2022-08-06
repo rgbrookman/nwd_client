@@ -3,7 +3,8 @@ import './about.css';
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet';
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 
 
 function AboutScreen() {
@@ -108,7 +109,10 @@ closed: {
 
 
   return (
+    <>
+    <Header />
     <Container fluid className="aboutScreenMain">
+
     <Helmet>
        <title>About NWD</title>
      </Helmet>
@@ -138,7 +142,7 @@ closed: {
     initial="hidden"
     animate="open"
     onClick={() => {
-        setNiceAnswer(niceanswer => 'You are right. Life is an unparalleled opportunity for joy, love and many kinds of fulfilling lived experiences.');
+        setNiceAnswer(niceanswer => 'You are right. Life is an unparalleled opportunity for joy, love and many other kinds of fulfilling lived experiences.');
         setFortuneAnswer(fortuneAnswer => true);
         setClickCount(prevCount => prevCount + 1);
       }}>
@@ -154,7 +158,7 @@ closed: {
     <h1
     >You are correct!</h1>
     <h6
-    >Life is an unparalleled opportunity for joy, love and many kinds of fulfilling lived experiences.</h6>
+    >Life is an unparalleled opportunity for joy, love and many other kinds of fulfilling lived experiences.</h6>
     </motion.div>
 
 
@@ -180,7 +184,7 @@ closed: {
     animate={ difficultAnswer ? "open" : "hidden" }>
     <h1
     >You are correct!</h1>
-    <h6>Life can be a crushing, crippling confiscation of a whole world of anxiety, stress, pain and tragedy.</h6>
+    <h6>Life can be crushing, destructive and tragic where your world can feel overrun by anxiety, stress and pain.</h6>
     </motion.div>
 
     <motion.div
@@ -193,6 +197,7 @@ closed: {
         </motion.div>
           <Footer />
     </Container>
+        </>
   );
 }
 

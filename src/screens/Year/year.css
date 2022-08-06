@@ -1,4 +1,13 @@
 /* Year Screen */
+@media only screen and (min-width: 1201px) {
+  .pageLoading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+
 .yearTopRow {
   display: flex;
   flex-direction: row;
@@ -287,6 +296,37 @@
   width: auto;
 }
 
+.explainerButton {
+  background-color: #46A46C;
+  color: #EBF4FA;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #EBF4FA;
+  box-shadow: none;
+  width: auto;
+}
+
+.explainerButton:hover {
+  background-color: #EBF4FA;
+  color: #46A46C;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #46A46C;
+  border-color: #46A46C;
+  box-shadow: none;
+  width: auto;
+}
+
+.videoContainer {
+  height: 500px;
+  width: 75%;
+  background-color: #EBF4FA;
+  display: flex;
+  top: 20%;
+  left: 12.5%;
+  position: fixed;
+  border: 1px solid #46A46C;
+  border-radius: 10px;
+}
+
 .dropdown-menu {
       background-color: #EBF4FA;
 }
@@ -294,6 +334,8 @@
 .helpItem {
     background-color: #EBF4FA;
   min-width: 100%;
+    font-family: 'caveat', cursive;
+    font-size: 1.2em;
   display: inline-flex;
   flex-direction: row;
     color: #46A46C;
@@ -359,11 +401,12 @@
   margin-left: 12px;
   margin-right: 12px;
 }
-
+}
 /* ================================================================= */
 
 
-@media only screen and (max-width: 1200px) and (min-width: 500px) {
+@media only screen and (max-width: 1200px) and (min-width: 502px) {
+
   .yearMap {
     display: grid;
     grid-row-gap: 12px;
@@ -589,115 +632,51 @@
   }
 }
 
-/* ================================================================= */
-
-@media only screen and (max-width: 499px) {
-
-#yearContainer {
-    margin: 0;
-    padding: 0;
-}
-
-.yearMap {
-  display: block;
+@media (max-width: 501px) and (min-width: 0px) {
+  .yearMap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
   .name {
     font-family: 'caveat', cursive;
     font-weight: '700';
     color: #46A46C;
-    font-size: clamp(5vw, 10vw, 15vw);
-  }
-
-  .dobText {
-    font-family: 'caveat', cursive;
-    font-weight: '700';
-    color: #46A46C;
-    font-size: clamp(5vw, 10vw, 15vw);
+    font-size: clamp(6vw, 8vw, 10vw);
+    line-height: 1;
   }
 
   .visionheader {
     font-family: 'caveat', cursive;
     color: #46A46C;
-  }
-
-  .nameBox {
-    width: auto;
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 12px;
-  }
-
-  .visionBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 12px;
+    font-size: clamp(2vw, 4vw, 6vw);
   }
 
   .visionBox input {
     width: 100%;
-
-  }
-
-  .memoryBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
     margin-bottom: 12px;
   }
 
-  .ikigaiBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 12px;
+  .dividingLine {
+    margin: 3px 12px 3px 12px;
+    color: green;
   }
 
-  .dobBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-        margin-bottom: 12px;
+
+  .ikigaiText {
+    font-family: 'caveat', cursive;
+    color: #46A46C;
+    font-size: clamp(4vw, 6vw, 8vw);
   }
 
-  .whyBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 12px;
+
+  .dobText {
+    font-family: 'caveat', cursive;
+    font-weight: '700';
+    color: #46A46C;
   }
+
 
   .whyTitle {
     margin: 0;
@@ -706,18 +685,10 @@
   .whyText {
     font-family: 'caveat', cursive;
     color: #46A46C;
+    font-size: clamp(4vw, 6vw, 8vw);
   }
 
-  .valuesBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border-radius: 10px;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
+
 
   .valuesTitle {
     margin: 3px 0 12px 0;
@@ -731,43 +702,19 @@
     font-weight: 700;
     color: #46A46C;
     font-family: 'caveat', cursive;
-    font-size: 1.5em;
+    font-size: clamp(4vw, 5vw, 8vw);
   }
 
   .valueExplanation {
     color: #1D1F20;
+    font-size: clamp(1vw, 2vw, 3vw);
   }
 
-  .quoteBox {
-    background-color: #EBF4FA;
-    color: #1D1F20;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 12px;
-  }
-
-  .quoteBox input {
-    width: 100%;
-    height: 75px;
-  }
 
   .quoteText {
     font-family: 'caveat', cursive;
     color: #46A46C;
-  }
-
-  .ikigaiBox input {
-    width: 100%;
-    height: 75px;
-  }
-
-  .ikigaiText {
-    font-family: 'caveat', cursive;
-    color: #46A46C;
+    font-size: clamp(4vw, 6vw, 8vw);
   }
 
   .buttonBox {
@@ -777,11 +724,28 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding: 10px;
   }
 
   .submitYearButton {
     background-color: #EBF4FA;
     color: #46A46C;
     border: 1px solid #46A46C;
+    margin-bottom: 12px;
   }
+
+  .dobText {
+    font-family: 'caveat', cursive;
+    font-weight: '700';
+    color: #46A46C;
+    font-size: clamp(4vw, 6vw, 8vw);
+  }
+
+  .dobText2 {
+    font-family: 'caveat', cursive;
+    font-weight: '700';
+    color: #46A46C;
+    font-size: clamp(4vw, 6vw, 8vw);
+  }
+
 }

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createWeekAction, listWeeks, updateWeekAction } from '../../actions/weekActions';
-import Loading from '../../components/Loading';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import Loading from '../../components/Loading/Loading';
+import PageLoading from '../../components/Loading/PageLoading';
+import Header from '../../components/Header/Header';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
 import { Helmet } from 'react-helmet';
 import './week.css';
 import axios from "axios";
@@ -76,6 +78,10 @@ const [isEditIcon9, setEditIcon9] = useState(true);
 const [isInput10, setIsInput10] = useState(true);
 const [isCircleCheck10, setCircleCheck10] = useState(false);
 const [isEditIcon10, setEditIcon10] = useState(true);
+
+const [videoDisplay, setVideoDisplay] = useState(true);
+
+  const [pageLoading, setPageLoading] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -211,9 +217,37 @@ const [isEditIcon10, setEditIcon10] = useState(true);
     },
   }
 
-  return (
+  const valueState = {
+    hide: {
+      display: "none",
+    },
+    show: {
+      display: "block",
+    },
+  };
 
+  const loadingTimeout = () => {
+    setTimeout(()=> {
+      setPageLoading(false)
+    }, 3000)
+  }
+
+  useEffect(()=> {
+    loadingTimeout();
+  })
+
+  return (
+<>
+<Header />
 <Container className="weekScreenMain" fluid>
+
+<motion.div
+animate={videoDisplay ? "hide" : "show"}
+variants={valueState}
+className="videoContainer">
+<h1>Video</h1>
+</motion.div>
+
 <Helmet>
    <title>Week | View</title>
  </Helmet>
@@ -224,10 +258,19 @@ const [isEditIcon10, setEditIcon10] = useState(true);
       <Button className="submitWeekButton" type="submit">
         Update
       </Button>
+
+      <Button className="explainerButton"
+      onClick={()=> {
+        setVideoDisplay(videoDisplay => !videoDisplay);
+      }}>
+      Learn About Your Week Page
+      </Button>
+
       <Button className="submitWeekButton" href='/week/create'>
         Create New Week
       </Button>
   </Row>
+    { pageLoading ? <PageLoading /> :
 <Row>
 <Col sm={12} md={6} lg={6} xl={6}>
 
@@ -1028,8 +1071,10 @@ onChange={(e) => setObjectiveTen_score(e.target.value)}
 </Row>
 </Col>
 </Row>
-
+  }
     </Form>
+
 </Container>
+</>
   );
 }

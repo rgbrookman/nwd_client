@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, ToggleButton } from 'react-bootstrap';
-import Loading from '../../components/Loading';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import Loading from '../../components/Loading/Loading';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -2460,7 +2460,6 @@ const valuesState = {
 
                   </motion.div>
       }
-
 
     </AnimatePresence>
         </AnimateSharedLayout>

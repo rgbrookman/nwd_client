@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { updateYearAction, listYears } from '../../actions/yearActions';
 import { listDays } from '../../actions/dayActions';
-import Loading from '../../components/Loading';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading/Loading';
+import PageLoading from '../../components/Loading/PageLoading';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
 import { Button, Container, Row, Col, Dropdown, DropdownButton } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faEraser } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faEraser, faQuestion } from '@fortawesome/free-solid-svg-icons'
 import { compareAsc, format } from 'date-fns'
+import { Helmet } from 'react-helmet';
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import axios from "axios";
 import './year.css';
@@ -57,6 +60,11 @@ export default function ViewYearScreen({ history }) {
   const [birthDate, setBirthDate] = useState("");
   const [inputBirthDate, setInputBirthDate] = useState(false);
 
+  const [videoDisplay, setVideoDisplay] = useState(true);
+  const [videoLink, setVideoLink] = useState('TpLVtoE6bFg');
+
+  const [pageLoading, setPageLoading] = useState(true);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let { id } = useParams();
@@ -66,7 +74,6 @@ export default function ViewYearScreen({ history }) {
 
   const yearList = useSelector((state) => state.yearList);
   const { loading, error, years } = yearList;
-
 
   const yearUpdate = useSelector((state) => state.yearUpdate);
   const { success: successUpdate } = yearUpdate;
@@ -205,13 +212,28 @@ let diff = Math.abs(day2-day1);
 let daysCalc = diff / (1000 * 3600 * 24)
 let days1 = Math.floor(daysCalc);
 
+const loadingTimeout = () => {
+  setTimeout(()=> {
+    setPageLoading(false)
+  }, 3000)
+}
+
+useEffect(()=> {
+  loadingTimeout();
+})
+
   return (
 
+<>
+<Header />
     <form onSubmit={updateHandler}>
-       { loading && <Loading />}
-    <main id="yearContainer">
-    <div className="yearTopRow">
 
+    <Helmet>
+       <title>Your Year | Create</title>
+     </Helmet>
+  { pageLoading ? <div className="pageLoading"><PageLoading /></div> :
+    <main id="yearContainer">
+      <div className="yearTopRow">
 
     <DropdownButton
       id="helpButton"
@@ -222,8 +244,17 @@ let days1 = Math.floor(daysCalc);
     </Dropdown.Item>
     <Dropdown.Item className="helpItem" eventKey="2">Vision</Dropdown.Item>
     <Dropdown.Item className="helpItem" eventKey="3">Ikigai</Dropdown.Item>
+    <Dropdown.Item className="helpItem" eventKey="4">Why NWD?</Dropdown.Item>
+    <Dropdown.Item className="helpItem" eventKey="4">Navigational Quote</Dropdown.Item>
 
   </DropdownButton>
+<Button className="explainerButton d-none d-sm-flex"
+onClick={()=> {
+  setVideoDisplay(videoDisplay => !videoDisplay);
+}}>
+Learn About Your Year Page
+</Button>
+
   <Button
   className="submitYearButton"
   type="submit"
@@ -233,6 +264,12 @@ let days1 = Math.floor(daysCalc);
 
 
     </div>
+    <motion.div
+    animate={videoDisplay ? "hide" : "show"}
+    variants={valueState}
+    className="videoContainer">
+    <h1>Video</h1>
+    </motion.div>
       <motion.section className="yearMap"
       onReturn{...updateHandler}>
 
@@ -269,6 +306,13 @@ let days1 = Math.floor(daysCalc);
                     onClick={()=> {
                       setInputName(inputName => !inputName);
                     }}/>
+                    <FontAwesomeIcon
+                        className="questionIcon"
+                      icon={faQuestion}
+                      onClick={() => {
+                        setVideoLink('TDBQ3qMxpOk');
+                        setVideoDisplay(videoDisplay => !videoDisplay);
+                      }} />
                 </motion.div>
               </motion.div>
           </motion.div>
@@ -310,6 +354,13 @@ let days1 = Math.floor(daysCalc);
             onClick={()=> {
               setInputBirthDate(inputBirthDate => !inputBirthDate);
             }}/>
+            <FontAwesomeIcon
+                className="questionIcon"
+              icon={faQuestion}
+              onClick={() => {
+                setVideoLink('TDBQ3qMxpOk');
+                setVideoDisplay(videoDisplay => !videoDisplay);
+              }} />
 
         </motion.div>
         </motion.div>
@@ -328,6 +379,13 @@ let days1 = Math.floor(daysCalc);
             onClick={()=> {
               setInputValues_1(inputValues_1 => !inputValues_1);
             }}/>
+            <FontAwesomeIcon
+                className="questionIcon"
+              icon={faQuestion}
+              onClick={() => {
+                setVideoLink('TDBQ3qMxpOk');
+                setVideoDisplay(videoDisplay => !videoDisplay);
+              }} />
         </motion.div>
 
         <motion.input
@@ -370,6 +428,13 @@ let days1 = Math.floor(daysCalc);
               onClick={()=> {
                 setInputValues_1_Text(inputValues_1_Text => !inputValues_1_Text);
               }}/>
+              <FontAwesomeIcon
+                  className="questionIcon"
+                icon={faQuestion}
+                onClick={() => {
+                  setVideoLink('TDBQ3qMxpOk');
+                  setVideoDisplay(videoDisplay => !videoDisplay);
+                }} />
 
           </motion.div>
         </div>
@@ -384,6 +449,13 @@ let days1 = Math.floor(daysCalc);
                 onClick={()=> {
                   setInputValues_2(inputValues_2 => !inputValues_2);
                 }}/>
+                <FontAwesomeIcon
+                    className="questionIcon"
+                  icon={faQuestion}
+                  onClick={() => {
+                    setVideoLink('TDBQ3qMxpOk');
+                    setVideoDisplay(videoDisplay => !videoDisplay);
+                  }} />
             </motion.div>
 
             <motion.input
@@ -425,6 +497,13 @@ let days1 = Math.floor(daysCalc);
                   onClick={()=> {
                     setInputValues_2_Text(inputValues_2_Text => !inputValues_2_Text);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
               </motion.div>
             </div>
@@ -439,6 +518,13 @@ let days1 = Math.floor(daysCalc);
                 onClick={()=> {
                   setInputValues_3(inputValues_3 => !inputValues_3);
                 }}/>
+                <FontAwesomeIcon
+                    className="questionIcon"
+                  icon={faQuestion}
+                  onClick={() => {
+                    setVideoLink('TDBQ3qMxpOk');
+                    setVideoDisplay(videoDisplay => !videoDisplay);
+                  }} />
             </motion.div>
 
             <motion.input
@@ -480,6 +566,13 @@ let days1 = Math.floor(daysCalc);
                   onClick={()=> {
                     setInputValues_3_Text(inputValues_3_Text => !inputValues_3_Text);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
               </motion.div>
             </div>
@@ -497,6 +590,13 @@ let days1 = Math.floor(daysCalc);
         onClick={()=> {
           setInputValues_4(inputValues_4 => !inputValues_4);
         }}/>
+        <FontAwesomeIcon
+            className="questionIcon"
+          icon={faQuestion}
+          onClick={() => {
+            setVideoLink('TDBQ3qMxpOk');
+            setVideoDisplay(videoDisplay => !videoDisplay);
+          }} />
     </motion.div>
 
     <motion.input
@@ -537,7 +637,13 @@ onChange={(e) => setMyValues_4_Text(e.target.value)}></motion.input>
           onClick={()=> {
             setInputValues_4_Text(inputValues_4_Text => !inputValues_4_Text);
           }}/>
-
+          <FontAwesomeIcon
+              className="questionIcon"
+            icon={faQuestion}
+            onClick={() => {
+              setVideoLink('TDBQ3qMxpOk');
+              setVideoDisplay(videoDisplay => !videoDisplay);
+            }} />
       </motion.div>
     </div>     : null }
 
@@ -553,6 +659,13 @@ onChange={(e) => setMyValues_4_Text(e.target.value)}></motion.input>
         onClick={()=> {
           setInputValues_5(inputValues_5 => !inputValues_5);
         }}/>
+        <FontAwesomeIcon
+            className="questionIcon"
+          icon={faQuestion}
+          onClick={() => {
+            setVideoLink('TDBQ3qMxpOk');
+            setVideoDisplay(videoDisplay => !videoDisplay);
+          }} />
     </motion.div>
 
     <motion.input
@@ -594,6 +707,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
           onClick={()=> {
             setInputValues_5_Text(inputValues_5_Text => !inputValues_5_Text);
           }}/>
+          <FontAwesomeIcon
+              className="questionIcon"
+            icon={faQuestion}
+            onClick={() => {
+              setVideoLink('TDBQ3qMxpOk');
+              setVideoDisplay(videoDisplay => !videoDisplay);
+            }} />
 
       </motion.div>
     </div>                 :   null               }
@@ -631,6 +751,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
           onClick={()=> {
             setInputQuote(inputQuote => !inputQuote);
           }}/>
+          <FontAwesomeIcon
+              className="questionIcon"
+            icon={faQuestion}
+            onClick={() => {
+              setVideoLink('TDBQ3qMxpOk');
+              setVideoDisplay(videoDisplay => !videoDisplay);
+            }} />
 
         </motion.div>
       </motion.div>
@@ -665,6 +792,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
               onClick={()=> {
                 setInputVision_1(inputVision_1 => !inputVision_1);
               }}/>
+              <FontAwesomeIcon
+                  className="questionIcon"
+                icon={faQuestion}
+                onClick={() => {
+                  setVideoLink('TDBQ3qMxpOk');
+                  setVideoDisplay(videoDisplay => !videoDisplay);
+                }} />
 
             </motion.div>
           </motion.div>
@@ -698,6 +832,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
                   onClick={()=> {
                     setInputVision_2(inputVision_2 => !inputVision_2);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
                 </motion.div>
               </motion.div>
@@ -730,6 +871,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
                   onClick={()=> {
                     setInputVision_3(inputVision_3 => !inputVision_3);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
                 </motion.div>
               </motion.div>
@@ -762,6 +910,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
                   onClick={()=> {
                     setInputVision_4(inputVision_4 => !inputVision_4);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
                 </motion.div>
               </motion.div>
@@ -794,6 +949,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
                   onClick={()=> {
                     setInputVision_5(inputVision_5 => !inputVision_5);
                   }}/>
+                  <FontAwesomeIcon
+                      className="questionIcon"
+                    icon={faQuestion}
+                    onClick={() => {
+                      setVideoLink('TDBQ3qMxpOk');
+                      setVideoDisplay(videoDisplay => !videoDisplay);
+                    }} />
 
                 </motion.div>
               </motion.div>
@@ -829,6 +991,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
         onClick={()=> {
           setInputWhy(inputWhy => !inputWhy);
         }}/>
+        <FontAwesomeIcon
+            className="questionIcon"
+          icon={faQuestion}
+          onClick={() => {
+            setVideoLink('TDBQ3qMxpOk');
+            setVideoDisplay(videoDisplay => !videoDisplay);
+          }} />
 
       </motion.div>
     </motion.div>
@@ -860,6 +1029,13 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
         onClick={()=> {
           setInputIkigai(inputIkigai => !inputIkigai);
         }}/>
+        <FontAwesomeIcon
+            className="questionIcon"
+          icon={faQuestion}
+          onClick={() => {
+            setVideoLink('TDBQ3qMxpOk');
+            setVideoDisplay(videoDisplay => !videoDisplay);
+          }} />
 
       </motion.div>
     </motion.div>
@@ -880,6 +1056,10 @@ onChange={(e) => setMyValues_5_Text(e.target.value)}></motion.input>
 
               </motion.section>
     </main>
+      }
     </form>
+
+    </>
+
   );
 }

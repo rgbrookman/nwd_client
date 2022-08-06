@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { updateProfile } from '../../actions/dayActions';
 import { Card, Button, Row, Col, Container, Form } from 'react-bootstrap';
-import Loading from '../../components/Loading';
-import { ErrorMessage } from '../../components/ErrorMessage';
+import Loading from '../../components/Loading/Loading';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser } from '@fortawesome/free-solid-svg-icons'
 import './values.css';

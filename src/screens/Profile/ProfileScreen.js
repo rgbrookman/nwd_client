@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../actions/userActions';
 import { Card, Button, Row, Col, Container, Form } from 'react-bootstrap';
-import Loading from '../../components/Loading';
-import { ErrorMessage } from '../../components/ErrorMessage';
-import Footer from '../../components/Footer';
+import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading/Loading';
+import { ErrorMessage } from '../../components/Error/ErrorMessage';
+import Footer from '../../components/Footer/Footer';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faEraser } from '@fortawesome/free-solid-svg-icons'
@@ -54,7 +55,9 @@ confirmPassword
 
 
   return (
-<Container fluid className="mainProfileScreen" >
+    <>
+    <Header />
+<Container fluid className="mainProfileScreen mt-5" >
 <Helmet>
    <title>Edit Profile</title>
  </Helmet>
@@ -122,5 +125,6 @@ onChange={(e) => setConfirmPassword(e.target.value)}
 </Row>
 <Footer/>
 </Container>
+</>
   );
 }
