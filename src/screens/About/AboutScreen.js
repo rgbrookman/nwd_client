@@ -130,7 +130,7 @@ closed: {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 2, delay: 1 }}
-    >Click to cast your answer below</motion.span>
+    >Click to cast your answer below </motion.span>
     </div>
 
 
